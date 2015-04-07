@@ -268,7 +268,9 @@ Please edit.
 
 exports.seed = function(knex, Promise) {
   return knex("users").insert({
-    username: "ah-bookshelf-plugin"
+    username: "ah-bookshelf-plugin",
+    created_at: new Date(),
+    updated_at: new Date()
   });
 };
 ```
@@ -296,7 +298,7 @@ exports.index = {
   name: "users.index",
   description: "users.index",
   run: function(api, connection, next){
-    api.models.Users.forge().fetch()
+    api.models.User.fetchAll()
     .then(function(users) {
       connection.response.users = users;
       next(connection, true);
