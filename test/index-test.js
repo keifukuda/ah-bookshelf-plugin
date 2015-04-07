@@ -13,6 +13,13 @@ import bookshelf from "../initializers/bookshelf";
 var actionhero, api, db, User;
 actionhero = new actionheroPrototype();
 
+// var config = {
+//   configChanges: {
+//     general: {
+//       developmentMode: false
+//     }
+//   }
+// };
 
 describe("ah-bookshelf-plugin test", () => {
 
