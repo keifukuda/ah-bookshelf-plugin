@@ -35,12 +35,17 @@ Add the `"ah-bookshelf-plugin"` to `config/plugins.js`.
 
 "use strict";
 
-exports["default"] = { general: function(api) {
-  return {
-    plugins: [
-      "ah-bookshelf-plugin"
-    ]
-  };
+module.exports = {
+  "default": {
+    general: function(api) {
+      return {
+        plugins: [
+          "ah-bookshelf-plugin"
+        ]
+      };
+    }
+  },
+  //...
 }};
 ```
 
@@ -284,6 +289,8 @@ The api is exposed in `api.bookshelf` and `api.models` object.
 
 ```javascript
 // actions/users.js
+
+"use strict";
 
 exports.index = {
   name: "users.index",
