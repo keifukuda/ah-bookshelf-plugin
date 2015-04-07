@@ -58,11 +58,13 @@ export default {
     files = files.filter( (file) => !(regex.test(file)) );
     files.forEach( (file) => loadFile(file) );
 
+    // ユーティリティー読み込み
+    api.bookshelf.utils = utils(api);
+
     return next();
   },
 
   start: function(api, next) {
-    api.bookshelf.utils = utils(api);
     return next();
   },
 
