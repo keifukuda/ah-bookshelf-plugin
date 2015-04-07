@@ -1,0 +1,63 @@
+{
+  "name": "ah-bookshelf-plugin",
+  "description": "Bookshelf plugin for actionhero",
+  "version": "0.1.0",
+  "author": {
+    "name": "Kei Fukuda",
+    "email": "kei.fukuda@me.com",
+    "url": ""
+  },
+  "bugs": {
+    "url": "https://github.com/keifukuda/ah-bookshelf-plugin/issues"
+  },
+  "dependencies": {
+    "bookshelf": "0.7.x",
+    "knex": "0.7.x"
+  },
+  "devDependencies": {
+    "actionhero": "10.1.x",
+    "babel": "5.0.x",
+    "del": "1.1.x",
+    "espower-babel": "1.4.x",
+    "gulp": "3.8.x",
+    "gulp-babel": "5.0.x",
+    "gulp-sourcemaps": "1.5.x",
+    "mocha": "2.2.x",
+    "power-assert": "0.10.x",
+    "source-map-support": "0.2.x",
+    "sqlite3": "3.0.x"
+  },
+  "files": [
+    "bin",
+    "config",
+    "database",
+    "grunt",
+    "initializers",
+    "models",
+    "utils"
+  ],
+  "homepage": "https://github.com/keifukuda/ah-bookshelf-plugin",
+  "keywords": [
+    "actionhero",
+    "actionherojs",
+    "ah-bookshelf-plugin",
+    "bookshelf",
+    "plugin"
+  ],
+  "license": {
+    "type": "MIT",
+    "url": "http://keifukuda.mit-license.org/"
+  },
+  "main": "none",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keifukuda/ah-bookshelf-plugin.git"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "clean": "gulp clean",
+    "postinstall": "bin/postinstall.sh",
+    "test": "npm run build && mocha test/*.js",
+    "watch": "gulp watch"
+  }
+}
