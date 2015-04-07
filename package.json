@@ -11,12 +11,12 @@
     "url": "https://github.com/keifukuda/ah-bookshelf-plugin/issues"
   },
   "dependencies": {
+    "babel": "5.0.x",
     "bookshelf": "0.7.x",
     "knex": "0.7.x"
   },
   "devDependencies": {
     "actionhero": "10.1.x",
-    "babel": "5.0.x",
     "del": "1.1.x",
     "espower-babel": "1.4.x",
     "gulp": "3.8.x",
