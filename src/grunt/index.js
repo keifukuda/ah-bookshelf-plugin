@@ -110,7 +110,7 @@ export default function(grunt) {
     done = this.async();
     return grunt.startActionhero(function(api) {
       ok = "Drop database " + api.config.bookshelf.connection.database + ".";
-      return api.bookshelf.utils.db.create().then(function() {
+      return api.bookshelf.utils.db.drop().then(function() {
         grunt.log.oklns(ok);
         return done();
       }).catch(function(err) {
