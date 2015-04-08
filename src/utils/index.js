@@ -1,6 +1,7 @@
 "use strict";
 
 import "babel/polyfill";
+import Knex from "knex";
 
 export default function(api) {
 
@@ -44,7 +45,7 @@ export default function(api) {
 
 
       create: function() {
-        var config, knex, sql;
+        var _knex, config, knex, sql;
         knex = api.bookshelf.knex;
         sql = "create database " + api.config.bookshelf.connection.database;
 
@@ -59,54 +60,22 @@ export default function(api) {
           sql += " template template0";
           config = JSON.parse(JSON.stringify(api.config.bookshelf));
           config.connection.database = "template1";
-          return knex.destroy().then(() => {
-            knex = require("knex")(config);
-            return knex.raw(sql).then(() => {
-              // NOTE: destroy() を実行しているので、genericPool が Undefined の為、
-              //       新規インスタンスの genericPool を代入。
-              // Error: The genericPool is not initialized.
-              api.bookshelf.knex.client.pool.genericPool = knex.client.pool.genericPool;
-            });
-            // .catch((err) => {
-            //   /*
-            //    { [error: database "ah_bookshelf_plugin_test" already exists]
-            //    name: 'error',
-            //    length: 100,
-            //    severity: 'ERROR',
-            //    code: '42P04',
-            //    detail: undefined,
-            //    hint: undefined,
-            //    position: undefined,
-            //    internalPosition: undefined,
-            //    internalQuery: undefined,
-            //    where: undefined,
-            //    schema: undefined,
-            //    table: undefined,
-            //    column: undefined,
-            //    dataType: undefined,
-            //    constraint: undefined,
-            //    file: 'dbcommands.c',
-            //    line: '443',
-            //    routine: 'createdb' }
-            //    */
 
-            //   // データベースがすでに存在する場合
-            //   if (err.code === '42P04') {
-            //     api.bookshelf.knex.client.pool.genericPool = knex.client.pool.genericPool;
-            //     return Promise.resolve();
-            //   }
-            //   else {
-            //     return Promise.reject();
-            //   }
-          });
+          // 別のDBに接続後、データベースを作成
+          _knex = Knex(config);
+          return _knex.raw(sql).then(_knex.destroy);
 
         case "mysql":
         case "mysql2":
-        case "maria":
-        case "mariadb":
-        case "mariasql":
-          // sql = sql.replace("create database", "create database if not exists");
-          return knex.raw(sql);
+        case "maria":    // Only MariaDB error
+        case "mariadb":  // Error: No database selected
+        case "mariasql": // https://github.com/tgriesser/bookshelf/issues/415
+          config = JSON.parse(JSON.stringify(api.config.bookshelf));
+          config.connection.database = "information_schema";
+
+          // 別のDBに接続後、データベースを作成
+          _knex = Knex(config);
+          return _knex.raw(sql).then(_knex.destroy);
 
         default:
           return knex.raw(sql);
@@ -115,7 +84,7 @@ export default function(api) {
 
 
       drop: function() {
-        var config, knex, sql;
+        var _knex, config, knex, sql;
         knex = api.bookshelf.knex;
         sql = "drop database " + api.config.bookshelf.connection.database;
 
@@ -130,14 +99,11 @@ export default function(api) {
         case "postgresql":
           config = JSON.parse(JSON.stringify(api.config.bookshelf));
           config.connection.database = "template1";
+
+          // 別のDBに接続後、データベースを削除
+          _knex = Knex(config);
           return knex.destroy().then(() => {
-            knex = require("knex")(config);
-            return knex.raw(sql).then(() => {
-              // NOTE: destroy() を実行しているので、genericPool が Undefined の為、
-              //       新規インスタンスの genericPool を代入。
-              // Error: The genericPool is not initialized.
-              api.bookshelf.knex.client.pool.genericPool = knex.client.pool.genericPool;
-            });
+            return _knex.raw(sql).then(_knex.destroy);
           });
 
         case "mysql":
@@ -145,8 +111,14 @@ export default function(api) {
         case "maria":
         case "mariadb":
         case "mariasql":
-          // sql = sql.replace("drop database", "drop database if exists");
-          return knex.raw(sql);
+          config = JSON.parse(JSON.stringify(api.config.bookshelf));
+          config.connection.database = "information_schema";
+
+          // 別のDBに接続後、データベースを削除
+          _knex = Knex(config);
+          return knex.destroy().then(() => {
+            return _knex.raw(sql).then(_knex.destroy);
+          });
 
         default:
           return knex.raw(sql);
