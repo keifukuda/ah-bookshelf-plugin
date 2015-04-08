@@ -32,8 +32,8 @@ actionhero = new actionheroPrototype();
         // api.config.bookshelf.migrations.directory = "./test/migrations";
         // api.config.bookshelf.seeds.directory = "./test/seeds";
 
-        return bookshelf.initialize(api, function() {
-          return bookshelf.start(api, function() {
+        return bookshelf.initialize(api, () => {
+          return bookshelf.start(api, () => {
             db = api.bookshelf.utils.db;
             User = api.models.User;
             return done();
