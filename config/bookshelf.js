@@ -59,7 +59,12 @@ module.exports = {
         debug: false,
         client: "sqlite3",
         connection: {
-          filename: "./test/database.sqlite"
+          host: "127.0.0.1",
+          port: 5432,
+          user: "postgres",
+          password: "postgres",
+          database: "db_test",
+          charset: "utf8"
         }
       };
     }
