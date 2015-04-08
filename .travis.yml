@@ -6,6 +6,3 @@ node_js:
   - "iojs"
 addons:
   postgresql: "9.3"
-before_script:
-  - mysql -e 'create database ah_bookshelf_plugin_test;'
-  - psql  -c 'create database ah_bookshelf_plugin_test;' -U postgres
