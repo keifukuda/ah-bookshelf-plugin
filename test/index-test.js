@@ -19,7 +19,8 @@ var actionhero, api, db, User;
 actionhero = new actionheroPrototype();
 
 
-[sqlite, postgres, mysql, mariadb].forEach( (config) => {
+// [sqlite, postgres, mysql, mariadb].forEach( (config) => {
+[sqlite, postgres, mysql].forEach( (config) => {
 
   describe("ah-bookshelf-plugin test for " + config.bookshelf.client, () => {
 
