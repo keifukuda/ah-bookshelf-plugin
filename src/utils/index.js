@@ -19,7 +19,7 @@ export default function(api) {
 
       migrate: {
         make: function(name) {
-          if (name == null) {
+          if (name === null) {
             return Promise.reject("The file name is required.");
           }
           return api.bookshelf.knex.migrate.make(name);
@@ -32,7 +32,7 @@ export default function(api) {
 
       seed: {
         make: function(name) {
-          if (name == null) {
+          if (name === null) {
             return Promise.reject("The file name is required.");
           }
           return api.bookshelf.knex.seed.make(name);
