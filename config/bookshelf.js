@@ -57,7 +57,6 @@ module.exports = {
     bookshelf: function bookshelf(api) {
       return {
         debug: false,
-        client: "sqlite3",
         connection: {
           host: "127.0.0.1",
           port: 5432,
