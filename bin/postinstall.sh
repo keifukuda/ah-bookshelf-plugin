@@ -32,11 +32,16 @@ declare project_model_dir=$project_root_dir/models
 declare project_database_dir=$project_root_dir/database
 
 
+NRM="\e[0;0m"
+RED="\e[0;31m"
+GRN="\e[0;32m"
+
 # check package.json
 if [ -f $project_package_json_file ]; then
     :
 else
-    echo $project_package_json_file does not exist.
+    printf "%bERR!: %b" $RED $NRM
+    printf "$project_package_json_file does not exist.\n"
     exit 0
 fi
 
@@ -48,7 +53,8 @@ if [ -f $project_config_file ]; then
     :
 else
     cp $package_config_file $project_config_file
-    echo "Add config file        to $project_config_file"
+    printf "%bINFO: %b" $GRN $NRM
+    printf "Add config file        to $project_config_file\n"
 fi
 
 # copy models directory
@@ -56,7 +62,8 @@ if [ -d $project_model_dir ]; then
     :
 else
     cp -r $package_model_dir $project_model_dir
-    echo "Add models directory   to $project_model_dir"
+    printf "%bINFO: %b" $GRN $NRM
+    printf "Add models directory   to $project_model_dir\n"
 fi
 
 # copy database directory
@@ -64,7 +71,8 @@ if [ -d $project_database_dir ]; then
     :
 else
     cp -r $package_database_dir $project_database_dir
-    echo "Add database directory to $project_database_dir"
+    printf "%bINFO: %b" $GRN $NRM
+    printf "Add database directory to $project_database_dir\n"
 fi
 
-echo ""
+printf "\n"
