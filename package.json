@@ -21,7 +21,6 @@
     "espower-babel": "2.0.x",
     "gulp": "3.8.x",
     "gulp-babel": "5.1.x",
-    "gulp-sourcemaps": "1.5.x",
     "mariasql": "0.1.x",
     "mocha": "2.2.x",
     "mysql": "2.6.x",
