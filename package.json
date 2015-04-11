@@ -18,9 +18,9 @@
   "devDependencies": {
     "actionhero": "10.1.x",
     "del": "1.1.x",
-    "espower-babel": "1.4.x",
+    "espower-babel": "2.0.x",
     "gulp": "3.8.x",
-    "gulp-babel": "5.0.x",
+    "gulp-babel": "5.1.x",
     "gulp-sourcemaps": "1.5.x",
     "mariasql": "0.1.x",
     "mocha": "2.2.x",
