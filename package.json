@@ -1,7 +1,7 @@
 {
   "name": "ah-bookshelf-plugin",
   "description": "Bookshelf plugin for actionhero",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": {
     "name": "Kei Fukuda",
     "email": "kei.fukuda@me.com",
