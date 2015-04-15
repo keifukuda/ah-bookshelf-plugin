@@ -11,7 +11,7 @@
     "url": "https://github.com/keifukuda/ah-bookshelf-plugin/issues"
   },
   "dependencies": {
-    "babel": "5.0.x",
+    "babel": "5.1.x",
     "bookshelf": "0.7.x",
     "knex": "0.7.x"
   },
