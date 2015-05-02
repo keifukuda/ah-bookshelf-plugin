@@ -30,7 +30,7 @@ export default {
     config = api.config.bookshelf;
 
     // 初期化
-    api.bookshelf = Bookshelf.initialize(Knex(config));
+    api.bookshelf = Bookshelf(Knex(config));
 
     // モデルファイル読み込みとファイル変更の監視
     loadFile = function(file) {
