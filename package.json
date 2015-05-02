@@ -11,21 +11,21 @@
     "url": "https://github.com/keifukuda/ah-bookshelf-plugin/issues"
   },
   "dependencies": {
-    "babel": "5.1.x",
-    "bookshelf": "0.7.x",
-    "knex": "0.7.x"
+    "babel": "5.2.x",
+    "bookshelf": "0.8.x",
+    "knex": "0.8.x"
   },
   "devDependencies": {
     "actionhero": "10.1.x",
     "del": "1.1.x",
-    "espower-babel": "2.0.x",
+    "espower-babel": "2.1.x",
     "gulp": "3.8.x",
     "gulp-babel": "5.1.x",
     "mariasql": "0.1.x",
     "mocha": "2.2.x",
     "mysql": "2.6.x",
     "pg": "4.3.x",
-    "power-assert": "0.10.x",
+    "power-assert": "0.11.x",
     "source-map-support": "0.2.x",
     "sqlite3": "3.0.x"
   },
