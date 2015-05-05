@@ -69,6 +69,11 @@ export default {
   },
 
   stop: function(api, next) {
-    return api.bookshelf.knex.destroy(next);
+    if (api.bookshelf.utils.pool.live()) {
+      return api.bookshelf.knex.destroy(next);
+    }
+    else {
+      return next();
+    }
   }
 };
