@@ -16,7 +16,7 @@
     "knex": "0.8.x"
   },
   "devDependencies": {
-    "actionhero": "10.1.x",
+    "actionhero": "11.x",
     "del": "1.1.x",
     "espower-babel": "2.1.x",
     "gulp": "3.8.x",
