@@ -24,7 +24,7 @@ actionhero = new actionheroPrototype();
 
   describe("ah-bookshelf-plugin test for " + config.bookshelf.client, () => {
 
-    before( (done) => {
+    beforeEach( (done) => {
       actionhero.start({configChanges: config}, (err, a) => {
         if (err) { return done(err); }
         api = a;
@@ -43,11 +43,22 @@ actionhero = new actionheroPrototype();
       });
     });
 
-    after( (done) => {
-      actionhero.stop( (err) => {
-        if (err) { return done(err); }
-        return done();
-      });
+    afterEach( (done) => {
+      // initliazer.stop not running...
+      if (api.bookshelf.utils.pool.live()) {
+        api.bookshelf.knex.destroy( (err) => {
+          actionhero.stop( (err) => {
+            if (err) { return done(err); }
+            return done();
+          });
+        });
+      }
+      else {
+        actionhero.stop( (err) => {
+          if (err) { return done(err); }
+          return done();
+        });
+      }
     });
 
 
