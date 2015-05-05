@@ -7,6 +7,14 @@ export default function(api) {
 
   return {
 
+    pool: {
+      live() {
+        var pool = api.bookshelf.knex.client.pool || { live: false };
+        pool = pool.live === undefined ? false : pool.live;
+        return pool;
+      }
+    },
+
     db: {
       version: function() {
         return api.bookshelf.knex.migrate.currentVersion();
