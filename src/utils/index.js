@@ -8,7 +8,7 @@ export default function(api) {
   return {
 
     pool: {
-      live() {
+      live: () => {
         var pool = api.bookshelf.knex.client.pool || { live: false };
         pool = pool.live === undefined ? false : pool.live;
         return pool;
@@ -16,43 +16,40 @@ export default function(api) {
     },
 
     db: {
-      version: function() {
+      version() {
         return api.bookshelf.knex.migrate.currentVersion();
       },
 
-
-      rollback: function() {
+      rollback() {
         return api.bookshelf.knex.migrate.rollback();
       },
 
-
       migrate: {
-        make: function(name) {
+        make(name) {
           if (name === null) {
             return Promise.reject("The file name is required.");
           }
           return api.bookshelf.knex.migrate.make(name);
         },
-        run: function() {
+
+        run() {
           return api.bookshelf.knex.migrate.latest();
         }
       },
 
-
       seed: {
-        make: function(name) {
+        make(name) {
           if (name === null) {
             return Promise.reject("The file name is required.");
           }
           return api.bookshelf.knex.seed.make(name);
         },
-        run: function() {
+        run() {
           return api.bookshelf.knex.seed.run();
         }
       },
 
-
-      create: function() {
+      create() {
         var _knex, config, knex, sql;
         knex = api.bookshelf.knex;
         sql = "create database " + api.config.bookshelf.connection.database;
@@ -90,8 +87,7 @@ export default function(api) {
         };
       },
 
-
-      drop: function() {
+      drop() {
         var _knex, config, knex, sql;
         knex = api.bookshelf.knex;
         sql = "drop database " + api.config.bookshelf.connection.database;

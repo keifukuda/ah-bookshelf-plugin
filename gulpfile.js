@@ -9,12 +9,12 @@ var paths = {
 
 var cleanDirectories = ["initializers", "grunt", "utils"];
 
-gulp.task("clean", function(cb) {
-  del(cleanDirectories, cb);
+gulp.task("clean", function() {
+  del.sync(cleanDirectories);
 });
 
 gulp.task("babel", ["clean"], function() {
-  return gulp.src(paths.src)
+  gulp.src(paths.src)
     .pipe(babel())
     .pipe(gulp.dest(paths.dest));
 });
