@@ -46,10 +46,7 @@
     "bookshelf",
     "plugin"
   ],
-  "license": {
-    "type": "MIT",
-    "url": "http://keifukuda.mit-license.org/"
-  },
+  "license": "MIT",
   "main": "none",
   "repository": {
     "type": "git",
